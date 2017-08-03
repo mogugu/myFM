@@ -81,8 +81,9 @@ var MusicPlayer=(function () {
               console.log("ended");
               if(_this.playModes[0]===3){
                  _this.renderMusic(_this.musicList[_this.musicIndex]);
+              }else{
+                  _this.loadNextMusic(_this.playModes[_this.playModes[0]]);
               }
-              _this.loadNextMusic(_this.playModes[_this.playModes[0]]);
           });
           //改变进度
           _this.progressBarNode.addEventListener("click",function (e) {

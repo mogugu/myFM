@@ -38,7 +38,7 @@ a{
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-image: url("1.jpg");
+    background-image: url("../1.jpg");
     background-size: contain;
     border: 10px solid rgba(0,0,0,.4);
     animation: circle-rotate 5s linear infinite;
