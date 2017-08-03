@@ -163,14 +163,14 @@ var MusicPlayer=(function () {
        //获取专辑信息
        getAlbum:function () {
           var _this=this;
-           _this.get("https://api.jirengu.com/fm/getChannels.php",{},function (res) {
+           _this.get("https://jirenguapi.applinzi.com/fm/getChannels.php",{},function (res) {
                _this.renderCate(res.channels);
            });
        },
        //获取音乐
        getMusic: function (channel) {
           var _this=this;
-           _this.get("https://api.jirengu.com/fm/getSong.php",{channel:channel},function (res) {
+           _this.get("https://jirenguapi.applinzi.com/fm/getSong.php",{channel:channel},function (res) {
                   if(res.song[0].artist===null) return;
                   _this.musicList.push(res.song[0]);
            });
