@@ -271,7 +271,6 @@ var MusicPlayer=(function () {
            this.musicSinger.innerText=song.artist;
            this.musicInfoBox.style.backgroundImage="url("+song.picture+")";
            this.musicBg.setAttribute("src",song.picture);
-           this.music.volume=0.5;
            this.music.play();
 
            this.musicInfoBox.style.animationPlayState="running";
