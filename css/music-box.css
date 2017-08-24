@@ -9,34 +9,35 @@ li{
 a{
     text-decoration: none;
 }
+html{
+    font-size: 100px;
+}
 .music-box{
-    margin: 20px auto;
-    width: 360px;
-    height: 500px;
-    border-radius: 30px;
+    height: 100vh;
     background-color: #eeeff5;
+}
+.musics-box{
+    height: 100%;
 }
 .music-info-box{
     position: relative;
-    height: 338px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
+    height: 70%;
     overflow: hidden;
 }
 .music-info-box .music-img{
     position: absolute;
     filter: blur(8px);
-    border-top-right-radius: 30px;
-    border-top-left-radius: 30px;
     width: 100%;
     height: 100%;
 }
 .music-info-box .music-bg{
     position: absolute;
-    top: 69px;
-    left: 80px;
-    width: 200px;
-    height: 200px;
+    top: 50%;
+    left: 50%;
+    margin-top: -2rem;
+    margin-left: -2rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     background-image: url("../1.jpg");
     background-size: contain;
@@ -44,8 +45,17 @@ a{
     animation: circle-rotate 5s linear infinite;
     animation-play-state: paused;
 }
+
+@media screen and (max-width:640px) {
+    .music-info-box .music-bg{
+        margin-top: -1rem;
+        margin-left: -1rem;
+        width: 2rem;
+        height: 2rem;
+    }
+}
 @keyframes circle-rotate {
-    from {transform: rotate(0deg)}
+    from {transform: rotate(0deg) }
     to {transform: rotate(360deg)}
  }
 .music-info-box .music-lrc{
@@ -60,37 +70,34 @@ a{
     text-align: center;
     color: #fff;
     padding: 5px 0;
-    font-size: 14px;
+    font-size: .14rem;
 }
 .music-info-box .music-lrc p.cur{
     color: #18e461;
 }
 .music-play-control{
     position: relative;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    padding-top:15px;
+    padding-top:.15rem;
 }
-.music-play-control>div{
+.music-play-control .play-control{
     position: absolute;
-    top: 23px;
-    left: 20px;
+    top: .23rem;
+    left: 5%;
     color: #fff;
-    width: 26px;
-    height: 20px;
-
+    width: .26rem;
+    height: .2rem;
 }
 .music-info-box .music-play-control p{
     color: #fff;
     font-family: cursive ,"Microsoft YaHei UI";
-    font-size: 16px;
+    font-size: .16rem;
     line-height: 1.2;
     text-align: center;
 }
 .music-info-box .music-play-control p.title{
-    font-size: 18px;
+    font-size: .18rem;
     font-weight: 700;
-    width: 270px;
+    width: 2.7rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -98,14 +105,14 @@ a{
 }
 .music-play-control .icon{
     display: inline-block;
-    width: 26px;
-    height: 20px;
+    width: .26rem;
+    height: .20rem;
     font-weight: 700;
 }
 .music-play-control .list{
     position: absolute;
-    right: 10px;
-    top: 23px;
+    right: 2%;
+    top: .23rem;
     color: #85889f;
 }
 .music-play-control .list:hover{
@@ -113,7 +120,7 @@ a{
 }
 .music-info-box .info{
     width: 100%;
-    height: 65px;
+    height: .65rem;
     background-color: rgba(0,0,0,.3);
     overflow: hidden;
 }
@@ -123,10 +130,11 @@ a{
     text-align: center;
     padding:10px 0;
 }
-
+.player-box{
+    height: 30%;
+}
 .player-box .progress{
     position: relative;
-    height: 8px;
 }
 .player-box .progress .bar{
     height: 8px;
@@ -140,15 +148,13 @@ a{
 .progress .time{
     padding-left: 10px;
     padding-top: 6px;
-    font-size: 12px;
+    font-size: .12rem;
     color: #ed5e74;
 }
 .progress .time-total{
     float: right;
     padding-right: 10px;
 }
-
-
 .music:after{
     clear: both;
     display: block;
@@ -158,8 +164,8 @@ a{
 .playList .icon{
     position: absolute;
     display: inline-block;
-    width: 36px;
-    height: 36px;
+    width: .36rem;
+    height: .36rem;
     background-color: #fff;
     border-radius: 50%;
 }
@@ -167,28 +173,30 @@ a{
     position: absolute;
     font-family: "iconfont";
     font-style:normal;
-    font-size: 20px;
+    font-size: .2rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     cursor: pointer;
 }
 .share{
-    top: 13px;
-    left: 20px;
+    top: .13rem;
+    left: 5%;
 }
 .like{
-    top: 13px;
-    right: 20px;
+    top: .13rem;
+    right: 5%;
 }
 .music{
-    margin-top: 30px;
+    margin-top: .3rem;
     position: relative;
 }
 .music-control{
     position: absolute;
-    left: 100px;
+    left: 50%;
+    width: 1.7rem;
+    height: .54rem;
+    transform: translateX(-50%);
 }
-
 .music-control .icon{
     background-color: #60558f;
     color: #fff;
@@ -198,8 +206,8 @@ a{
 }
 .music .play{
     left: 58px;
-    width: 54px;
-    height: 54px;
+    width: .54rem;
+    height: .54rem;
     z-index: 1;
 }
 .music .next{
@@ -211,10 +219,10 @@ a{
 }
 .music .sound-volume{
     position: absolute;
-    top: 90px;
-    left: 20px;
+    top: 1rem;
+    left: 5%;
     width: 88%;
-    height: 4px;
+    height: 0.04rem;
 }
 .music .sound-volume .bar{
     height: 3px;
@@ -235,23 +243,26 @@ a{
 .playList{
     padding: 30px;
     display: none;
+    height: 100vh;
 }
 .playList h3{
     position: relative;
     color: #60558f;
     text-align: center;
+    font-size: .16rem;
     line-height: 1.5em;
+    margin-bottom: .2rem;
 }
 .playList .back{
     left: 0;
     top: -5px;
 }
 .albumList{
-    margin-top: 20px;
-    height: 380px;
+    height: 90vh;
     overflow-y: auto;
 }
 .albumList li{
+    font-size: .14rem;
     border-bottom: 1px solid #d0d0d0;
     padding: 10px;
     color: #2f1a4b;

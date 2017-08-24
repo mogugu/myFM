@@ -29,7 +29,12 @@ var MusicPlayer=(function () {
           this.music=new Audio();
           this.music.autoPlay=true;
           this.musicIndex=0;
-          this.musicList=this.musiclrc=[];
+          this.musicList=[{artist:"Mariah Carey", lrc: "http://musicdata.baidu.com/data2/lrc/12722613/12722613.lrc",
+              picture: "http://musicdata.baidu.com/data2/pic/89765233/89765233.jpg@s_0,w_300",
+              sid: 5692680,
+              title: "I'Ve Been Thinking About You",
+              url: "http://yinyueshiting.baidu.com/data2/music/42903644/56926801503500461128.mp3?xcode=66adfdf76d176662f5d44a3a1acfff98"}];
+          this.musiclrc=[];
           this.playModes=[1,"icon-circulation","icon-randomPlay","icon-singleCycle"]; //1代表当前播放模式，取值范围为1（循环）2（随机）3（单曲）
           this.timer;
 
@@ -187,22 +192,11 @@ var MusicPlayer=(function () {
        //初始加载音乐
        initMusic: function () {
           var _this=this;
-          var init=function () {
-              setTimeout(function () {
-                  _this.renderMusic(_this.musicList[_this.musicIndex]);
-              },1000);
-          };
-          setTimeout(function () {
-              if(_this.musicList.length!==0){
-                  init();
-              }else{
-                  setTimeout(init,1000);
-              }
-          },1000);
+          this.renderMusic(_this.musicList[_this.musicIndex]);
+          this.musicList=[];
           for(var i=0;i<10;i++){
               _this.getMusic();
           }
-          console.log(_this.musicList);
        },
        //处理歌词
        handleLrc: function (lrc) {
@@ -271,6 +265,7 @@ var MusicPlayer=(function () {
            this.musicSinger.innerText=song.artist;
            this.musicInfoBox.style.backgroundImage="url("+song.picture+")";
            this.musicBg.setAttribute("src",song.picture);
+           this.music.volume=0.5;
            this.music.play();
 
            this.musicInfoBox.style.animationPlayState="running";
@@ -341,37 +336,59 @@ function drag(target,bar,callback) {
     };
     //获取元素初始的位置
     params.left = getCss(target, "left");
-    target.onmousedown = function (e) {
-        e.preventDefault();
-        params.isClickDown = true;
-        //获取鼠标的位置
-        params.currentX = e.clientX;
-        document.onmousemove = function (e) {
-            if (params.isClickDown) {
-                //获取鼠标当前的位置
-                var curX = e.clientX;
-                //计算鼠标移动的距离
-                var disX = curX - params.currentX;
-                //更新元素的位置
-                target.style.left = parseInt(params.left) + disX + "px";
 
-                //设置边界
-                var parentWidth = parseInt(getCss(target.parentElement, "width")) - 10;
-                var nodeLeft = parseInt(getCss(target, "left"));
-                if (nodeLeft > parentWidth) {
-                    target.style.left = parentWidth + "px";
-                    params.isClickDown = false;
-                } else if (nodeLeft <= 0) {
-                    target.style.left = 0;
-                }
-                bar.style.width = parseInt(params.left) + disX + 'px'; //设置声音条
+    function down(event) {
+        var touch;
+        params.isClickDown=true;
+        event.touches ? touch=event.touches[0] : touch=event;
+        params.currentX=touch.clientX;
+    }
+    function move() {
+        if(params.isClickDown){
+            var touch;
+            event.touches ? touch=event.touches[0] : touch=event;
+            //获取鼠标当前的位置
+            var curX = touch.clientX;
+            //计算鼠标移动的距离
+            var disX = curX - params.currentX;
+            //更新元素的位置
+            target.style.left = parseInt(params.left) + disX + "px";
+
+            //设置边界
+            var parentWidth = parseInt(getCss(target.parentElement, "width")) - 10;
+            var nodeLeft = parseInt(getCss(target, "left"));
+            if (nodeLeft > parentWidth) {
+                target.style.left = parentWidth + "px";
+                params.isClickDown = false;
+            } else if (nodeLeft <= 0) {
+                target.style.left = 0;
             }
+            bar.style.width = parseInt(params.left) + disX + 'px'; //设置声音条
+        }
+    }
+    function up() {
+        params.isClickDown = false;
+        params.left = getCss(target, "left");
+        callback();
+        document.onmousemove = null;
+    }
+    target.onmousedown = function (event) {
+        down(event);
+        document.onmousemove=function (event) {
+            move(event);
         };
-        document.onmouseup = function (e) {
-            params.isClickDown = false;
-            params.left = getCss(target, "left");
-            callback();
-            document.onmousemove = null;
+        document.onmouseup=function (event) {
+            up()
         }
     };
+    //移动端实现
+    target.addEventListener("touchstart",function (event) {
+        down(event);
+        document.addEventListener("touchmove",function (event) {
+            move(event)
+        });
+        document.addEventListener("touchend",function (event) {
+            up()
+        });
+    });
 }
