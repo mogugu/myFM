@@ -187,7 +187,7 @@ html{
     right: 5%;
 }
 .music{
-    margin-top: .3rem;
+    margin-top: .2rem;
     position: relative;
 }
 .music-control{
@@ -219,7 +219,7 @@ html{
 }
 .music .sound-volume{
     position: absolute;
-    top: 1rem;
+    top: 0.8rem;
     left: 5%;
     width: 88%;
     height: 0.04rem;
