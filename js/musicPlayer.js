@@ -29,11 +29,11 @@ var MusicPlayer=(function () {
           this.music=new Audio();
           this.music.autoPlay=true;
           this.musicIndex=0;
-          this.musicList=[{artist:"Mariah Carey", lrc: "http://musicdata.baidu.com/data2/lrc/12722613/12722613.lrc",
-              picture: "http://musicdata.baidu.com/data2/pic/89765233/89765233.jpg@s_0,w_300",
-              sid: 5692680,
-              title: "I'Ve Been Thinking About You",
-              url: "http://yinyueshiting.baidu.com/data2/music/42903644/56926801503500461128.mp3?xcode=66adfdf76d176662f5d44a3a1acfff98"}];
+          this.musicList=[{artist:"李健", lrc: "http://musicdata.baidu.com/data2/lrc/13870387/13870387.lrc",
+              picture: "http://musicdata.baidu.com/data2/music/571EBCAA15F6EEFF52A93B8FCB8D7972/252575339/252575339.jpg@s_0,w_300",
+              sid: 12946586,
+              title: "谢谢你",
+              url: "http://yinyueshiting.baidu.com/data2/music/123312815/12946586180000128.mp3?xcode=feaba58c0ecf72f958a651629ec11350"}];
           this.musiclrc=[];
           this.playModes=[1,"icon-circulation","icon-randomPlay","icon-singleCycle"]; //1代表当前播放模式，取值范围为1（循环）2（随机）3（单曲）
           this.timer;
